@@ -1,0 +1,15 @@
+/consorcio/consorcio-ejb/build/
+/consorcio/build/
+/consorcio/consorcio-ejb/dist/
+/consorcio/consorcio-war/build/
+/consorcio/consorcio-war/dist/
+/consorcio/dist/
+/consorcio/nbproject/private/
+/consorcio/nbproject/build-impl.xml
+/consorcio/consorcio-ejb/nbproject/private/
+/consorcio/consorcio-war/nbproject/private/
+/consorcio/consorcio-war/nbproject/build-impl.xml
+/consorcio/consorcio-ejb/nbproject/build-impl.xml
+/consorcio/consorcio-war/nbproject/build-impl~.xml
+/consorcio/consorcio-ejb/nbproject/build-impl~.xml
+/consorcio/nbproject/build-impl~.xml
