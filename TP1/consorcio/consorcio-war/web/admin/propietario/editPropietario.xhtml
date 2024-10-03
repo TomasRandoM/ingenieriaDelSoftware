@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/WEB-INF/template.xhtml">
+      
+  
+    <ui:define name ="content">
+        <div class="botonera ShowOnDesktop Responsive">
+            <p:breadCrumb styleClass="navegacion">
+                <p:menuitem value="" url="/admin/ini.jsf" />
+                <p:menuitem value="Lista Propietario" url="/admin/propietario/listPropietario.jsf" />
+                <p:menuitem value="#{controllerEditPropietario.casoDeUso} Propietario" url="#" />
+            </p:breadCrumb>
+            <div class="EmptyBox10"> </div>
+            <div class="botones">
+                <p:commandButton value="Aceptar"  action="#{controllerEditPropietario.aceptar()}"  update="msj" style="background-color: #27ae60; border-color: #27ae60"/>
+                <p:commandButton value="Cancelar" action="#{controllerEditPropietario.cancelar()}" style="background-color: #ff6666; border-color: #ff6666;"/>            
+            </div>
+        </div>
+        
+        <div class="EmptyBox60"></div>
+        
+        <div class="Container100 Responsive100">
+            <div class="ContainerIndent ">
+                <div class="Card ShadowEffect HeiAutoOnMobile Wid100">
+                    DATOS
+                    <p:separator/>
+
+                    <div class="EmptyBox10"></div>
+                    <p:outputLabel value="Nombre"/>
+                    <div class="EmptyBox1"></div>
+                    <p:inputText id="nombre"  value="#{controllerEditPropietario.nombre}" type="text" styleClass="Wid90" disabled="#{controllerEditPropietario.desactivado}"/>
+                    <div class="EmptyBox10"></div>
+                    <p:outputLabel value="Apellido"/>
+                    <div class="EmptyBox1"></div>
+                    <p:inputText id="apellido"  value="#{controllerEditPropietario.apellido}" type="text" styleClass="Wid90" disabled="#{controllerEditPropietario.desactivado}"/>
+                    <div class="EmptyBox10"></div>
+                    <p:outputLabel value="Teléfono"/>
+                    <div class="EmptyBox1"></div>
+                    <p:inputText id="telefono"  value="#{controllerEditPropietario.telefono}" type="text" styleClass="Wid90" disabled="#{controllerEditPropietario.desactivado}"/>
+                    <div class="EmptyBox10"></div>
+                    <p:outputLabel value="Correo Electrónico"/>
+                    <div class="EmptyBox1"></div>
+                    <p:inputText id="correoElectronico"  value="#{controllerEditPropietario.correoElectronico}" type="text" styleClass="Wid90" disabled="#{controllerEditPropietario.desactivado}"/>
+                    <div class="EmptyBox10"></div>
+                    <p:outputLabel value="¿Habita el departamento?"/>
+                    <div class="EmptyBox1"></div>
+                    <p:selectBooleanButton onLabel="Sí" offLabel="No" onIcon="fa fa-check" offIcon="fa fa-times" style="width:6rem" value="#{controllerEditPropietario.esHabitante}"/>
+                    <div class="EmptyBox10"></div>
+                    <p:outputLabel value="Dirección:"/>
+                    <div class="EmptyBox1"></div> 
+                    <p:selectOneMenu id="direccion" value="#{controllerEditPropietario.idDireccion}" styleClass="Wid80" disabled="#{controllerEditPropietario.desactivado}">
+                        <f:selectItems value="#{controllerEditPropietario.direcciones}" />
+                    </p:selectOneMenu>
+                </div>
+            </div>
+        </div>
+
+        <div class="EmptyBox35"></div>
+        
+        <div class="Container100 ShowOnMobile">
+            <div class="ContainerIndent ">
+                <div class="Card Wid90 HeiAutoOnMobile">
+                    <div class="Fright">
+                        <p:commandButton value="Aceptar"  action="#{controllerEditPropietario.aceptar()}"  update="msj" /> 
+                        <p:commandButton value="Cancelar" action="#{controllerEditPropietario.cancelar()}" />                                
+                    </div>
+                </div>
+            </div>        
+        </div> 
+        
+    </ui:define>
+</ui:composition>

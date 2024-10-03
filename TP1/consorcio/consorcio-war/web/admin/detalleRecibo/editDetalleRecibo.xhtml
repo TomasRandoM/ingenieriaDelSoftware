@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/WEB-INF/template.xhtml">
+      
+  
+    <ui:define name ="content">
+        <div class="botonera ShowOnDesktop Responsive">
+            <p:breadCrumb styleClass="navegacion">
+                <p:menuitem value="" url="/admin/ini.jsf" />
+                <p:menuitem value="Lista DetalleRecibo" url="/admin/detalleRecibo/listDetalleRecibo.jsf" />
+                <p:menuitem value="#{controllerEditDetalleRecibo.casoDeUso} DetalleRecibo" url="#" />
+            </p:breadCrumb>
+            <div class="EmptyBox10"> </div>
+            <div class="botones">
+                <p:commandButton value="Aceptar"  action="#{controllerEditDetalleRecibo.aceptar()}"  update="msj" style="background-color: #27ae60; border-color: #27ae60"/>
+                <p:commandButton value="Cancelar" action="#{controllerEditDetalleRecibo.cancelar()}" style="background-color: #ff6666; border-color: #ff6666;"/>            
+            </div>
+        </div>
+        
+        <div class="EmptyBox60"></div>
+        
+        <div class="Container100 Responsive100">
+            <div class="ContainerIndent ">
+                <div class="Card ShadowEffect HeiAutoOnMobile Wid100">
+                    DATOS
+                    <p:separator/>
+
+                    <div class="EmptyBox10"></div>
+                    <p:outputLabel value="Cantidad"/>
+                    <div class="EmptyBox1"></div>
+                    <p:inputText id="cantidad"  value="#{controllerEditDetalleRecibo.cantidad}" type="text" styleClass="Wid90" disabled="#{controllerEditDetalleRecibo.desactivado}"/>
+                    <div class="EmptyBox10"></div>
+                    <p:outputLabel value="Subtotal"/>
+                    <div class="EmptyBox1"></div>
+                    <p:inputText id="subtotal"  value="#{controllerEditDetalleRecibo.subtotal}" type="text" styleClass="Wid90" disabled="true"/>
+                    <div class="EmptyBox10"></div>
+                    <p:outputLabel value="ExpensaInmueble"/>
+                    <div class="EmptyBox1"></div>
+                    <p:selectOneMenu id="expensaInmueble" value="#{controllerEditDetalleRecibo.idExpensaInmueble}" styleClass="Wid80" disabled="#{controllerEditDetalleRecibo.desactivado}">
+                        <f:selectItems value="#{controllerEditDetalleRecibo.expensasInmuebles}" />
+                    </p:selectOneMenu>
+                </div>
+            </div>
+        </div>
+
+        <div class="EmptyBox35"></div>
+        
+        <div class="Container100 ShowOnMobile">
+            <div class="ContainerIndent ">
+                <div class="Card Wid90 HeiAutoOnMobile">
+                    <div class="Fright">
+                        <p:commandButton value="Aceptar"  action="#{controllerEditDetalleRecibo.aceptar()}"  update="msj" /> 
+                        <p:commandButton value="Cancelar" action="#{controllerEditDetalleRecibo.cancelar()}" />                                
+                    </div>
+                </div>
+            </div>        
+        </div> 
+        
+    </ui:define>
+</ui:composition>
+
+
+
+

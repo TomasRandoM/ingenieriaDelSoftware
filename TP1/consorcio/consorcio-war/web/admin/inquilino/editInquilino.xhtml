@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/WEB-INF/template.xhtml">
+      
+  
+    <ui:define name ="content">
+        <div class="botonera ShowOnDesktop Responsive">
+            <p:breadCrumb styleClass="navegacion">
+                <p:menuitem value="" url="/admin/ini.jsf" />
+                <p:menuitem value="Lista Inquilino" url="/admin/inquilino/listInquilino.jsf" />
+                <p:menuitem value="#{controllerEditInquilino.casoDeUso} Inquilino" url="#" />
+            </p:breadCrumb>
+            <div class="EmptyBox10"> </div>
+            <div class="botones">
+                <p:commandButton value="Aceptar"  action="#{controllerEditInquilino.aceptar()}"  update="msj" style="background-color: #27ae60; border-color: #27ae60"/>
+                <p:commandButton value="Cancelar" action="#{controllerEditInquilino.cancelar()}" style="background-color: #ff6666; border-color: #ff6666;"/>            
+            </div>
+        </div>
+        
+        <div class="EmptyBox60"></div>
+        
+        <div class="Container100 Responsive100">
+            <div class="ContainerIndent ">
+                <div class="Card ShadowEffect HeiAutoOnMobile Wid100">
+                    DATOS
+                    <p:separator/>
+
+                    <div class="EmptyBox10"></div>
+                    <p:outputLabel value="Nombre"/>
+                    <div class="EmptyBox1"></div>
+                    <p:inputText id="nombre"  value="#{controllerEditInquilino.nombre}" type="text" styleClass="Wid90" disabled="#{controllerEditInquilino.desactivado}"/>
+                    <div class="EmptyBox10"></div>
+                    <p:outputLabel value="Apellido"/>
+                    <div class="EmptyBox1"></div>
+                    <p:inputText id="apellido"  value="#{controllerEditInquilino.apellido}" type="text" styleClass="Wid90" disabled="#{controllerEditInquilino.desactivado}"/>
+                    <div class="EmptyBox10"></div>
+                    <p:outputLabel value="Teléfono"/>
+                    <div class="EmptyBox1"></div>
+                    <p:inputText id="telefono"  value="#{controllerEditInquilino.telefono}" type="text" styleClass="Wid90" disabled="#{controllerEditInquilino.desactivado}"/>
+                    <div class="EmptyBox10"></div>
+                    <p:outputLabel value="Correo Electrónico"/>
+                    <div class="EmptyBox1"></div>
+                    <p:inputText id="correoElectronico"  value="#{controllerEditInquilino.correoElectronico}" type="text" styleClass="Wid90" disabled="#{controllerEditInquilino.desactivado}"/>
+                    <div class="EmptyBox10"></div>
+                    <p:outputLabel value="Fecha de nacimiento"/>
+                    <div class="EmptyBox1"></div>
+                    <p:calendar id="inline" value="#{controllerEditInquilino.fechaNacimiento}" showButtonPanel="true" navigator="true" showHour="false" timeInput="false" pattern="dd-MM-yyyy" mindate="#{controllerEditInquilino.minDate}" disabled="#{controllerEditInquilino.desactivado}"/>
+                    <div class="EmptyBox10"></div>
+                    <p:outputLabel value="Documento"/>
+                    <div class="EmptyBox1"></div>
+                    <p:inputText id="documento"  value="#{controllerEditInquilino.documento}" type="text" styleClass="Wid90" disabled="#{controllerEditInquilino.desactivado}"/>
+                    <div class="EmptyBox10"></div>
+                    <p:outputLabel value="Tipo de Documento"/>
+                    <div class="EmptyBox1"></div>
+                    <p:selectOneMenu id="tipoDocumento" value="#{controllerEditInquilino.tipoDocumento}" styleClass="Wid80" disabled="#{controllerEditInquilino.desactivado}">
+                        <f:selectItems value="#{controllerEditInquilino.tiposDocumento}" />
+                    </p:selectOneMenu>
+                    <div class="EmptyBox10"></div>
+                    <p:outputLabel value="Sexo"/>
+                    <div class="EmptyBox1"></div>
+                    <p:selectOneMenu id="sexo" value="#{controllerEditInquilino.sexo}" styleClass="Wid80" disabled="#{controllerEditInquilino.desactivado}">
+                        <f:selectItems value="#{controllerEditInquilino.sexos}" />
+                    </p:selectOneMenu>
+                    <div class="EmptyBox10"></div>
+                    <p:outputLabel value="Nacionalidad"/>
+                    <div class="EmptyBox1"></div>
+                    <p:selectOneMenu id="nacionalidad" value="#{controllerEditInquilino.idNacionalidad}" styleClass="Wid80" disabled="#{controllerEditInquilino.desactivado}">
+                        <f:selectItems value="#{controllerEditInquilino.nacionalidades}" />
+                    </p:selectOneMenu>
+                </div>
+            </div>
+        </div>
+
+        <div class="EmptyBox35"></div>
+        
+        <div class="Container100 ShowOnMobile">
+            <div class="ContainerIndent ">
+                <div class="Card Wid90 HeiAutoOnMobile">
+                    <div class="Fright">
+                        <p:commandButton value="Aceptar"  action="#{controllerEditInquilino.aceptar()}"  update="msj" /> 
+                        <p:commandButton value="Cancelar" action="#{controllerEditInquilino.cancelar()}" />                                
+                    </div>
+                </div>
+            </div>        
+        </div> 
+        
+    </ui:define>
+</ui:composition>
+

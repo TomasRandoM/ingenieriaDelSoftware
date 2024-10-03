@@ -1,0 +1,34 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pr="http://primefaces.org/rio">
+
+    <div class="Animated05" id="layout-menu-cover">
+        <ul class="layout-menu">
+            <div id="logo-container" style="text-align: center; padding: 5px; z-index: 100;">
+                <h:graphicImage name="logo_cond.png" library="default" style="height: 140px;" alt="Logo condominio"/>
+            </div>
+            <li>
+                <a class="menulink ripplelink">
+                    <i class="icon-round 58 Fs40"></i>
+                    <span class="Fs18">#{controllerSession.usuario.nombre}<i class="icon-downwards Fright Fs20"></i><br /></span>
+                </a>
+                <ul>
+                    <li> 
+                        <p:commandLink  value="Salir" action="#{controllerSession.logout()}" class="menulink ripplelink">
+                            <a href="#" class="menulink ripplelink">
+                                <i class="icon-thermostat1 Fs16"></i>
+                            </a>
+                        </p:commandLink>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <div class="Separator"></div>
+        <pr:menu id="menuPpal" widgetVar="menuPpal" model="#{controllerSession.model}"/>
+    </div>
+
+</ui:composition>

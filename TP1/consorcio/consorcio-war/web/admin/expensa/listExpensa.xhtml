@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+      
+    <ui:define name ="content">
+        <div class="Container50 Responsive50">
+            <p:commandButton type="nuevo" value="Alta" styleClass="ui-button-raised ui-button-success" style="background-color: #27ae60; border-color: #27ae60" action="#{controllerListExpensa.alta()}" />
+        </div>
+        <div class="EmptyBox10"> </div>
+        <h:panelGroup>
+                <div class="Container100 Responsive100">
+                    <p:dataTable var="variable" id="expensaTabla" value="#{controllerListExpensa.expensaList}" rows="10">
+                        <p:column width="5">
+                                        <p:commandButton  icon="fa fa-ellipsis-v" styleClass="Fright GrayButton" id="opcionTabla"/>
+                                        <p:slideMenu overlay="true" my="left top" at="left top" trigger="opcionTabla" style="height: 150px">
+                                            <p:menuitem value="Consultar" icon="fa fa-question Orange" action="#{controllerListExpensa.consultar(variable)}"/>
+                                            <p:menuitem value="Modificar" icon="fa fa-pencil Purple" action="#{controllerListExpensa.modificar(variable)}"/>
+                                            <p:menuitem value="Baja" icon="fa fa-trash Red" action="#{controllerListExpensa.baja(variable)}"/>
+                                        </p:slideMenu>
+                                    </p:column>
+                        <p:column headerText="Fecha Desde" width="70" >
+                            <h:outputText value="#{variable.fechaDesde}">
+                                <f:convertDateTime pattern="yyyy-MM-dd" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="Fecha Hasta" width="70" >
+                            <h:outputText value="#{variable.fechaHasta == null ? '': variable.fechaHasta}">
+                                <f:convertDateTime pattern="yyyy-MM-dd" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="Importe" width="30" >
+                            #{variable.importe}
+                        </p:column>
+                    </p:dataTable>
+                </div>
+        </h:panelGroup>
+        <h:outputStylesheet name="css/core-layout.css" library="rio-layout" />
+        <h:outputStylesheet name="css/animate.css" library="rio-layout" />
+        <h:outputStylesheet name="css/rio-font.css" library="rio-layout" />
+        <h:outputStylesheet name="css/ripple-effect.css" library="rio-layout" />
+        <h:outputStylesheet name="css/font-awesome.css" library="rio-layout" />
+        <h:outputStylesheet name="css/rio-layout.css" library="rio-layout" />
+    </ui:define>
+</ui:composition>

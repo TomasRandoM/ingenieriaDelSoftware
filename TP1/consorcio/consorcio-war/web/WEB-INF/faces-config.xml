@@ -1,0 +1,288 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+    <lifecycle>
+        <phase-listener>com.consorcio.controller.ControllerAutenticacion</phase-listener>
+    </lifecycle>
+
+    <managed-bean>
+        <managed-bean-name>controllerSession</managed-bean-name>
+        <managed-bean-class>com.consorcio.controller.ControllerSession</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>logout</from-outcome>
+            <to-view-id>login.jsf</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>login</from-outcome>
+            <to-view-id>login.jsf</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>  
+        <navigation-case>
+            <from-outcome>editPais</from-outcome>
+            <to-view-id>/admin/pais/editPais.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule> 
+        <navigation-case>
+            <from-outcome>editExpensaInmueble</from-outcome>
+            <to-view-id>/admin/expensaInmueble/editExpensaInmueble.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+   
+    <navigation-rule> 
+        <navigation-case>
+            <from-outcome>listExpensaInmueble</from-outcome>
+            <to-view-id>/admin/expensaInmueble/listExpensaInmueble.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule> 
+        <navigation-case>
+            <from-outcome>editExpensa</from-outcome>
+            <to-view-id>/admin/expensa/editExpensa.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+   
+    <navigation-rule> 
+        <navigation-case>
+            <from-outcome>listExpensa</from-outcome>
+            <to-view-id>/admin/expensa/listExpensa.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule> 
+        <navigation-case>
+            <from-outcome>listPais</from-outcome>
+            <to-view-id>/admin/pais/listPais.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule> 
+        <navigation-case>
+            <from-outcome>listInmueble</from-outcome>
+            <to-view-id>/admin/inmueble/listInmueble.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule> 
+        <navigation-case>
+            <from-outcome>editInmueble</from-outcome>
+            <to-view-id>/admin/inmueble/editInmueble.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule> 
+        <navigation-case>
+            <from-outcome>editProvincia</from-outcome>
+            <to-view-id>/admin/provincia/editProvincia.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule> 
+        <navigation-case>
+            <from-outcome>listProvincia</from-outcome>
+            <to-view-id>/admin/provincia/listProvincia.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule> 
+        <navigation-case>
+            <from-outcome>listDepartamento</from-outcome>
+            <to-view-id>/admin/departamento/listDepartamento.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule> 
+        <navigation-case>
+            <from-outcome>editDepartamento</from-outcome>
+            <to-view-id>/admin/departamento/editDepartamento.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule> 
+        <navigation-case>
+            <from-outcome>editLocalidad</from-outcome>
+            <to-view-id>/admin/localidad/editLocalidad.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule> 
+        <navigation-case>
+            <from-outcome>listLocalidad</from-outcome>
+            <to-view-id>/admin/localidad/listLocalidad.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule> 
+        <navigation-case>
+            <from-outcome>editMenu</from-outcome>
+            <to-view-id>/admin/menu/editMenu.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule> 
+        <navigation-case>
+            <from-outcome>listMenu</from-outcome>
+            <to-view-id>/admin/menu/listMenu.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule> 
+        <navigation-case>
+            <from-outcome>editSubmenu</from-outcome>
+            <to-view-id>/admin/submenu/editSubmenu.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule> 
+        <navigation-case>
+            <from-outcome>listSubmenu</from-outcome>
+            <to-view-id>/admin/submenu/listSubmenu.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule> 
+        <navigation-case>
+            <from-outcome>editInquilino</from-outcome>
+            <to-view-id>/admin/inquilino/editInquilino.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule> 
+        <navigation-case>
+            <from-outcome>listInquilino</from-outcome>
+            <to-view-id>/admin/inquilino/listInquilino.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule> 
+        <navigation-case>
+            <from-outcome>editPropietario</from-outcome>
+            <to-view-id>/admin/propietario/editPropietario.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule> 
+        <navigation-case>
+            <from-outcome>listPropietario</from-outcome>
+            <to-view-id>/admin/propietario/listPropietario.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule> 
+        <navigation-case>
+            <from-outcome>editConsorcio</from-outcome>
+            <to-view-id>/admin/consorcio/editConsorcio.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule> 
+        <navigation-case>
+            <from-outcome>listConsorcio</from-outcome>
+            <to-view-id>/admin/consorcio/listConsorcio.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule> 
+        <navigation-case>
+            <from-outcome>editNacionalidad</from-outcome>
+            <to-view-id>/admin/nacionalidad/editNacionalidad.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule> 
+        <navigation-case>
+            <from-outcome>listNacionalidad</from-outcome>
+            <to-view-id>/admin/nacionalidad/listNacionalidad.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule> 
+        <navigation-case>
+            <from-outcome>listDetalleRecibo</from-outcome>
+            <to-view-id>/admin/detalleRecibo/listDetalleRecibo.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule> 
+        <navigation-case>
+            <from-outcome>editDetalleRecibo</from-outcome>
+            <to-view-id>/admin/detalleRecibo/editDetalleRecibo.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule> 
+        <navigation-case>
+            <from-outcome>editRecibo</from-outcome>
+            <to-view-id>/admin/recibo/editRecibo.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule> 
+        <navigation-case>
+            <from-outcome>listRecibo</from-outcome>
+            <to-view-id>/admin/recibo/listRecibo.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule> 
+        <navigation-case>
+            <from-outcome>listCuentaCorreo</from-outcome>
+            <to-view-id>/admin/consorcio/listCuentaCorreo.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule> 
+        <navigation-case>
+            <from-outcome>editCuentaCorreo</from-outcome>
+            <to-view-id>/admin/consorcio/editCuentaCorreo.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+</faces-config>
