@@ -225,8 +225,8 @@ https://templatemo.com/tm-576-snapx-photography
               <div class="closed-item">
                 <div class="thumb">
                   <img th:src="${estudio.estudioImg}" alt="">
-                  <span class="winner"><em>Juego destacado:</em> X</span>
-                  <span class="price"><em>Juegos:</em> 999</span>
+                  <span class="winner"><em>Juego destacado:</em> <span th:text="${destacadoEstudio[estudio.id] != null ? destacadoEstudio[estudio.id].titulo : 'No posee'}"></span></span>
+                  <span class="price"><em>Juegos:</em> <span th:text="${juegosEstudio[estudio.id]}"></span></span>
                 </div>
                 <div class="down-content">
                   <div class="row">

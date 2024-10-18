@@ -23,16 +23,18 @@ import java.util.UUID;
 public class VideojuegoService {
 
     private final VideojuegoRepository videojuegoRepository;
-    private final EstudioService estudioService;
+    private EstudioService estudioService;
     private final CategoriaService categoriaService;
-    private final VideojuegosApplication videojuegosApplication;
 
     @Autowired
-    public VideojuegoService(VideojuegoRepository videojuegoRepository, EstudioService estudioService, CategoriaService categoriaService, VideojuegosApplication videojuegosApplication) {
+    public VideojuegoService(VideojuegoRepository videojuegoRepository, CategoriaService categoriaService) {
         this.videojuegoRepository = videojuegoRepository;
-        this.estudioService = estudioService;
         this.categoriaService = categoriaService;
-        this.videojuegosApplication = videojuegosApplication;
+    }
+
+    @Autowired
+    public void setEstudioService(EstudioService estudioService) {
+        this.estudioService = estudioService;
     }
 
     /**
@@ -139,15 +141,16 @@ public class VideojuegoService {
 
     /**
      * Modifica el videojuego
-     * @param id String
-     * @param titulo String
-     * @param rutaImg String
-     * @param precio float
-     * @param cantidad short
+     *
+     * @param id          String
+     * @param titulo      String
+     * @param rutaImg     String
+     * @param precio      float
+     * @param cantidad    short
      * @param descripcion String
-     * @param oferta boolean
+     * @param oferta      boolean
      * @param lanzamiento Date
-     * @param estudioId String
+     * @param estudioId   String
      * @param categoriaId String
      */
     public void modificarVideojuego(String id, String titulo, String rutaImg, float precio, short cantidad, String descripcion, boolean oferta, Date lanzamiento, String estudioId, String categoriaId) {
@@ -175,16 +178,17 @@ public class VideojuegoService {
 
     /**
      * Valida los datos de videojuego
-     * @param tipo String
-     * @param id String
-     * @param titulo String
-     * @param rutaImg String
-     * @param precio float
-     * @param cantidad short
+     *
+     * @param tipo        String
+     * @param id          String
+     * @param titulo      String
+     * @param rutaImg     String
+     * @param precio      float
+     * @param cantidad    short
      * @param descripcion String
-     * @param oferta boolean
+     * @param oferta      boolean
      * @param lanzamiento Date
-     * @param estudioId String
+     * @param estudioId   String
      * @param categoriaId String
      * @throws ErrorServiceException
      */
@@ -232,15 +236,16 @@ public class VideojuegoService {
 
     /**
      * Setea los datos en el objeto videojuego pasado como parámetro
-     * @param videojuego Videojuego
-     * @param titulo String
-     * @param rutaImg String
-     * @param precio float
-     * @param cantidad short
+     *
+     * @param videojuego  Videojuego
+     * @param titulo      String
+     * @param rutaImg     String
+     * @param precio      float
+     * @param cantidad    short
      * @param descripcion String
-     * @param oferta boolean
+     * @param oferta      boolean
      * @param lanzamiento Date
-     * @param estudioId String
+     * @param estudioId   String
      * @param categoriaId String
      * @return Videojuego
      * @throws ErrorServiceException
@@ -267,6 +272,23 @@ public class VideojuegoService {
         } catch (Exception ex) {
             ex.printStackTrace();
             throw new ErrorServiceException("Error de sistema");
+        }
+    }
+
+    public Collection<Videojuego> listarVideojuegoPorEstudio(String idEstudio) throws ErrorServiceException {
+        try {
+            return videojuegoRepository.listarVideojuegoPorEstudio(idEstudio);
+        } catch (Exception ex) {
+            throw new ErrorServiceException("Error de sistemas");
+        }
+    }
+
+    public Videojuego buscarPrimerVideojuegoPorEstudio(String idEstudio) throws ErrorServiceException {
+        try {
+            return videojuegoRepository.findFirstByEstudioIdAndActivoTrue(idEstudio);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw new ErrorServiceException("Error de sistemas");
         }
     }
 }

@@ -6,9 +6,7 @@ import com.ingenieriaSoftware.videojuegos.business.repository.EstudioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Servicio de estudio
@@ -19,14 +17,21 @@ import java.util.UUID;
 public class EstudioService {
 
     private final EstudioRepository estudioRepository;
+    private VideojuegoService videojuegoService;
 
     @Autowired
     public EstudioService(EstudioRepository estudioRepository) {
         this.estudioRepository = estudioRepository;
     }
 
+    @Autowired
+    public void setVideojuegoService(VideojuegoService videojuegoService) {
+        this.videojuegoService = videojuegoService;
+    }
+
     /**
      * Crea el estudio con el nombre especificado
+     *
      * @param nombre String
      * @throws ErrorServiceException
      */
@@ -66,6 +71,7 @@ public class EstudioService {
 
     /**
      * Busca al objeto en la base de datos y lo devuelve
+     *
      * @param idEstudio String
      * @return Estudio
      * @throws ErrorServiceException
@@ -98,6 +104,7 @@ public class EstudioService {
 
     /**
      * Elimina el objeto de la base de datos
+     *
      * @param idEstudio String
      * @throws ErrorServiceException
      */
@@ -118,6 +125,7 @@ public class EstudioService {
 
     /**
      * Lista los estudios
+     *
      * @return Collection
      * @throws ErrorServiceException
      */
@@ -131,7 +139,8 @@ public class EstudioService {
 
     /**
      * Modifica el estudio con el nuevo nombre
-     * @param id String
+     *
+     * @param id     String
      * @param nombre String
      * @throws ErrorServiceException
      */
@@ -171,4 +180,37 @@ public class EstudioService {
     }
 
     //No se agrega método de verificación por ser pocos atributos
+
+
+    public HashMap<String, Integer> cantidadJuegosPorEstudio() throws ErrorServiceException {
+        try {
+            HashMap<String, Integer> hashRta = new HashMap<>();
+            Collection<Estudio> estudios = listarEstudios();
+
+            for (Estudio estudio : estudios) {
+                hashRta.put(estudio.getId(), videojuegoService.listarVideojuegoPorEstudio(estudio.getId()).size());
+            }
+            return hashRta;
+        } catch (ErrorServiceException ex) {
+            throw ex;
+        } catch (Exception ex) {
+            throw new ErrorServiceException("Error contabilizando los juegos");
+        }
+    }
+
+    public HashMap<String, Videojuego> listarJuegoDestacado() throws ErrorServiceException {
+        try {
+            HashMap<String, Videojuego> hashRta = new HashMap<>();
+            Collection<Estudio> estudios = listarEstudios();
+
+            for (Estudio estudio : estudios) {
+                hashRta.put(estudio.getId(), videojuegoService.buscarPrimerVideojuegoPorEstudio(estudio.getId()));
+            }
+            return hashRta;
+        } catch (ErrorServiceException ex) {
+            throw ex;
+        } catch (Exception ex) {
+            throw new ErrorServiceException("Error contabilizando los juegos");
+        }
+    }
 }

@@ -23,8 +23,11 @@ public interface VideojuegoRepository extends JpaRepository<Videojuego, String> 
     public Videojuego buscarPorTitulo(@Param("titulo") String nombre);
 
     @Query("SELECT p FROM Videojuego p WHERE p.estudio.id = :id AND p.activo = TRUE")
-    public Collection<Videojuego> buscarPorEstudio(@Param("id") String estudio);
+    public Collection<Videojuego> listarVideojuegoPorEstudio(@Param("id") String estudio);
 
     @Query("SELECT p FROM Videojuego p WHERE p.categoria.id = :id AND p.activo = TRUE")
     public Collection<Videojuego> listarVideojuegoPorCategoria(@Param("id") String estudio);
+
+    public Videojuego findFirstByEstudioIdAndActivoTrue(String estudioId);
+
 }
