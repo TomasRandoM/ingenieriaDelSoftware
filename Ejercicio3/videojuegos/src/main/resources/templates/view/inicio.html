@@ -11,6 +11,7 @@
 <div th:insert="fragments/navbar :: navbar"></div>
 <div class="container">
     <div th:if="${mensajeError != null}" class='alert alert-danger' th:text="${mensajeError}" role='alert'></div>
+    <h3 class="text-dark mt-5">Videojuegos</h3>
     <a th:href="@{/altaVideojuego}" type="button" class="btn btn-success mt-5"> Nuevo</a>
     <div class="row mt-6">
         <div class="col-12 col-md-3"     th:each="videojuego : ${videojuegos}">
