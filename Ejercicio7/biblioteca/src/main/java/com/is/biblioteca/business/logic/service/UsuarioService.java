@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -265,10 +266,9 @@ public class UsuarioService implements UserDetailsService {
             if (clave == null || clave.trim().isEmpty()) {
                 throw new ErrorServiceException("Debe indicar la clave");
             }
-            
-            Usuario usuario = null; 
-            try {		
-             usuario = repository.buscarUsuarioPorEmailYClave(email, clave);
+
+            Usuario usuario = repository.buscarUsuarioPorEmailYClave(email, new BCryptPasswordEncoder().encode(clave));
+            try {
             } catch (NoResultException ex) {
             	throw new ErrorServiceException("No existe usuario para el correo y clave indicado");
             }
@@ -291,6 +291,10 @@ public class UsuarioService implements UserDetailsService {
             List<GrantedAuthority> permisos = new ArrayList();
             GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + usuario.getRol().toString());
             permisos.add(p);
+
+            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+            HttpSession session = attr.getRequest().getSession(true);
+            session.setAttribute("usuariosession", usuario);
             return new User(usuario.getEmail(), usuario.getPassword(), permisos);
         } else {
             return null;

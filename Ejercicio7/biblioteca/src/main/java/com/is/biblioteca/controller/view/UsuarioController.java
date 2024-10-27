@@ -1,6 +1,7 @@
 package com.is.biblioteca.controller.view;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,7 +45,6 @@ public class UsuarioController {
 			HttpSession session, ModelMap modelo) {
 
 		try {
-
 			Usuario usuario = usuarioService.login(email, clave);
 			session.setAttribute("usuariosession", usuario);
 
@@ -52,13 +52,15 @@ public class UsuarioController {
 				return "redirect:/admin/dashboard";
 			}
 
-			return "inicio.html";
+			return "redirect:/inicio";
 
 		} catch (ErrorServiceException ex) {
 			modelo.put("error", ex.getMessage());
+			System.out.println("d");
 			return "login.html";
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println("c");
 			modelo.put("error", e.getMessage());
 			return "login.html";
 		}
@@ -111,7 +113,7 @@ public class UsuarioController {
 	///////// VIEW: MODIFICAR USUARIO //////// 
 	//////////////////////////////////////////
 	//////////////////////////////////////////
-
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
 	@GetMapping("/perfil")
 	public String irEditModificar(ModelMap modelo, HttpSession session) {
 
@@ -120,7 +122,8 @@ public class UsuarioController {
 
 		return "usuario_modificar.html";
 	}
-	
+
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
 	@GetMapping("/perfil/{id}")
 	public String irEditModificar(ModelMap modelo, @PathVariable String id) {
 
@@ -139,7 +142,8 @@ public class UsuarioController {
           return "usuario_list";
       }	
 	}
-
+	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
 	@PostMapping("/perfil/{id}")
 	public String irEditModificar(MultipartFile archivo, @PathVariable String id, @RequestParam String nombre,
 			@RequestParam String email, @RequestParam String password, @RequestParam String password2,
