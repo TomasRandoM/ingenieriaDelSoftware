@@ -4,6 +4,7 @@ package com.is.biblioteca.controller.view;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import com.is.biblioteca.business.logic.service.AutorService;
 
 
 @Controller
+@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
 @RequestMapping("/autor")
 public class AutorController {
 
@@ -30,12 +32,13 @@ public class AutorController {
     //////////// VIEW: CREAR AUTOR /////////// 
     //////////////////////////////////////////
     //////////////////////////////////////////
-    
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/registrar")
     public String irEditAlta() {
         return "autor_form";
     }
-    
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/registro")
     public String aceptarEditAlta(ModelMap modelo,  @RequestParam String nombre )  {
 
@@ -84,7 +87,7 @@ public class AutorController {
     ///////// VIEW: MODIFICAR AUTOR ////////// 
     //////////////////////////////////////////
     //////////////////////////////////////////
-    
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/modificar/{id}")
     public String irEditModificar(ModelMap modelo, @PathVariable String id) throws ErrorServiceException{
         
@@ -104,7 +107,7 @@ public class AutorController {
         }
      
     }
-    
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/modificar/{id}")
     public String aceptarEditModificar(ModelMap modelo, @PathVariable String id, @RequestParam String nombre) {
         
@@ -132,7 +135,7 @@ public class AutorController {
     //////////// VIEW: BAJA AUTOR //////////// 
     //////////////////////////////////////////
     //////////////////////////////////////////
-    
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/baja/{id}")
     public String eliminarAutor(ModelMap modelo, @PathVariable String id) {
 

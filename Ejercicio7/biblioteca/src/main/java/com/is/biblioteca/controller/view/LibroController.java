@@ -3,6 +3,7 @@ package com.is.biblioteca.controller.view;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,7 @@ import com.is.biblioteca.business.logic.service.EditorialService;
 import com.is.biblioteca.business.logic.service.LibroService;
 
 @Controller
+@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
 @RequestMapping("/libro")
 public class LibroController {
 
@@ -37,7 +39,7 @@ public class LibroController {
     ///////////// VIEW: CREAR LIBRO ////////// 
     //////////////////////////////////////////
     //////////////////////////////////////////
-    
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/registrar")
     public String irEditAlta(ModelMap modelo) {
     	
@@ -55,7 +57,7 @@ public class LibroController {
     	return null;   
        }
     }
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/registro")
     public String aceptarEditAlta(@RequestParam(required = false) Long isbn, @RequestParam String titulo,
             			   	      @RequestParam(required = false) Integer ejemplares, @RequestParam String idAutor,
@@ -111,7 +113,7 @@ public class LibroController {
     ////////// VIEW: MODIFICAR LIBRO /////////
     //////////////////////////////////////////
     //////////////////////////////////////////
-    
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/modificar/{isbn}")
     public String irEditModificar(@PathVariable Long isbn, ModelMap modelo) {
       
@@ -131,7 +133,7 @@ public class LibroController {
       	 return null;   
        } 
     }
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/modificar/{isbn}")
     public String aceptarEditModificar(@PathVariable Long isbn, String titulo, Integer ejemplares, String idAutor, String idEditorial, ModelMap modelo, MultipartFile archivo) {
         try {

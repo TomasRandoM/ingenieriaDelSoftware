@@ -3,6 +3,7 @@ package com.is.biblioteca.controller.view;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import com.is.biblioteca.business.logic.error.ErrorServiceException;
 import com.is.biblioteca.business.logic.service.EditorialService;
 
 @Controller
+@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
 @RequestMapping("/editorial")
 public class EditorialController {
 
@@ -27,12 +29,13 @@ public class EditorialController {
     ///////// VIEW: CREAR EDITORIAL //////////
     //////////////////////////////////////////
     //////////////////////////////////////////
-    
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/registrar")
     public String irEditAlta() {
         return "editorial_form";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/registro")
     public String aceptarEditAlta(ModelMap modelo, @RequestParam String nombre)  {
 
@@ -80,7 +83,7 @@ public class EditorialController {
     //////// VIEW: MODIFICAR EDITORIAL ///////
     //////////////////////////////////////////
     //////////////////////////////////////////
-    
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/modificar/{id}")
     public String irEditModificar(ModelMap modelo, @PathVariable String id) throws ErrorServiceException{
         
@@ -100,7 +103,7 @@ public class EditorialController {
         }
 
     }
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/modificar/{id}")
     public String aceptarEditModificar(ModelMap modelo, @PathVariable String id, @RequestParam String nombre) {
         
@@ -126,7 +129,7 @@ public class EditorialController {
     /////////// VIEW: BAJA EDITORIAL /////////
     //////////////////////////////////////////
     //////////////////////////////////////////
-    
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/baja/{id}")
     public String eliminarEditorial(ModelMap modelo, @PathVariable String id) {
 
